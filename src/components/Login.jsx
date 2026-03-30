@@ -1,4 +1,8 @@
 const Login = () => {
+  const loginHandler = () => {
+    console.log("jhjgghj");
+  };
+
   return (
     <div
       style={{
@@ -36,6 +40,7 @@ const Login = () => {
           fontSize: 18,
           marginTop: 12,
         }}
+        onClick={loginHandler}
       >
         Login !
       </button>
