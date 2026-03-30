@@ -1,6 +1,19 @@
+import { useState } from "react";
+
 const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const getUserData = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
   const loginHandler = () => {
-    console.log("jhjgghj");
+    console.log(user);
+    setUser({
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -14,6 +27,7 @@ const Login = () => {
       }}
     >
       <input
+        type="text"
         style={{
           height: 24,
           width: 250,
@@ -21,9 +35,12 @@ const Login = () => {
           borderRadius: 8,
           padding: 3,
         }}
-        type="text"
+        name="email"
+        onChange={getUserData}
+        value={user.email}
       />
       <input
+        type="password"
         style={{
           height: 24,
           width: 250,
@@ -31,7 +48,9 @@ const Login = () => {
           borderRadius: 8,
           padding: 3,
         }}
-        type="password"
+        name="password"
+        onChange={getUserData}
+        value={user.password}
       />
       <button
         style={{
