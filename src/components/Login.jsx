@@ -1,15 +1,36 @@
 import { useState } from "react";
-//ss
+import axios from "axios";
+
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  const getUserData = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
+  const getUserData = ({ target }) => {
+    const { name, value } = target;
+    setUser({ ...user, [name]: value });
   };
   const loginHandler = () => {
     console.log(user);
+    axios
+      .post("http://localhost:1122/users/login", {
+        email: user.email,
+        password: user.password,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    // axios
+    //   .get("http://localhost:1122/users/getUsers")
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
     setUser({
       email: "",
       password: "",
